@@ -1,0 +1,8 @@
+{
+  "name": "react-mall-BMS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ZXIAOY/react-mall-BMS.git",
+  "author": "Zhangxiaoyu <zhangxiaoyu@apexsoft.com.cn>",
+  "license": "MIT"
+}
