@@ -1,0 +1,7 @@
+1. 从master分支切换到 dev分支上
+2. git merge origin master  // 拉取远程仓库的最新代码
+3. git add . 
+4. git commit -m
+5. git push --outstream
+6. git checkout -b xxxxx  //新建一个名称为xxxxx的分支
+7. git branch             //查看所有分支情况
