@@ -4,8 +4,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //html插件
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // html插件
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // 把CSS文件提取为独立的文件
 
 module.exports = {
   // 入口
