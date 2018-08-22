@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//引入字体文件
-// import 'font-awesome/css/font-awesome.min.css';
-// import './index.css';
-// import './index.scss';
+import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
+
+import Home from 'page/home/index.jsx';
+import Layout from 'component/layout/index.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,12 +12,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1>App</h1>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path='/' component={Home} /> {/* exact表示严格匹配 */}
+            <Redirect from='*' to='/' />
+          </Switch>
+        </Layout>
+      </Router>
     );
   }
 }
 
 ReactDOM.render(
-  <App></App>,
+  <App />,
   document.getElementById('app')
 );

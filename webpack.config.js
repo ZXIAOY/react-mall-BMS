@@ -15,6 +15,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/app.js'
   },
+  resolve: {
+    alias: {
+      page: path.resolve(__dirname, 'src/page'),
+      component: path.resolve(__dirname, 'src/component')
+    }
+  },
   // loaders
   module: {// 各种loader配置，在代码中import其他类型文件时，使用前，先用对应的loader
     rules: [
@@ -88,6 +94,10 @@ module.exports = {
   // 热加载服务器
   devServer: {
     contentBase: './dist',
-    port: 8086
+    port: 8086,
+    //路径没有找到时，返回到指定的路径
+    historyApiFallback: {
+      index: '/index.html'
+    }
   }
 };
