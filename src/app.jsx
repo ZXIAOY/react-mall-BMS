@@ -16,7 +16,8 @@ class App extends React.Component {
         <Layout>
           <Switch>
             <Route exact path='/' component={Home} /> {/* exact表示严格匹配 */}
-            <Redirect from='*' to='/' />
+            <Route path='/product' component={Home} /> 
+            <Route path='/product-category' component={Home} /> 
           </Switch>
         </Layout>
       </Router>
