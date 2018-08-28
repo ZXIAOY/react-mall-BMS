@@ -18,7 +18,8 @@ module.exports = {
   resolve: {
     alias: {
       page: path.resolve(__dirname, 'src/page'),
-      component: path.resolve(__dirname, 'src/component')
+      component: path.resolve(__dirname, 'src/component'),
+      utils: path.resolve(__dirname, 'src/utils')
     }
   },
   // loaders
@@ -82,7 +83,7 @@ module.exports = {
     // 处理html文件
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      favicon: './favicon.ico'
+      favicon: 'favicon.ico',
     }),
     // 独立的css文件
     new ExtractTextPlugin('css/[name].css'),
@@ -99,6 +100,14 @@ module.exports = {
     //路径没有找到时，返回到指定的路径
     historyApiFallback: {
       index: '/index.html'
+    },
+    // 域名代理，只要是/manage得，都代理到指定域名下进行
+    proxy: {
+      '/manage': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true,     //换源成用这个地址发送
+      }
     }
   }
 };
+
