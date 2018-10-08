@@ -1,6 +1,9 @@
 class MUtil {
 
-  // 网络请求方法
+  /**
+   * 网络请求方法
+   * 
+   */ 
   request(param) {
     // primise形式
     return new Promise((resolve, reject)=> {
@@ -29,9 +32,31 @@ class MUtil {
       });
     });
   }
-  // 跳转到登录页面
+  /**
+   *
+   * 跳转到登录页面
+   */ 
   doLogin() {
     window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+  }
+
+  /** 
+   * 获取url参数
+   * 
+   */
+  getUrlParam(name) {
+    // www.baidu.com?param=zxy&param1=yxj
+    // search就是从?开始的，参数的一串
+    let queryString = window.location.search.split('?')[1] || '',
+        reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'),
+        result = queryString.match(reg);
+    return result? decodeURIComponent(result[2]) : null;  
+  }
+  /** 
+   * 错误提示
+   */
+  errorTips(errMsg) {
+    alert(errMsg || '反正就是任性出错了');
   }
 
 }

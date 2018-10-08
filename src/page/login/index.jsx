@@ -4,10 +4,12 @@
  */
 import React from 'react';
 import MUtil from '../../utils/mm.jsx';
+import User from 'service/user-service.jsx';
 import './index.scss';
 
 // MUtil是一个class,new出来使用
 const _mm = new MUtil();
+const _user = new User();
 
 class Login extends React.Component {
 
@@ -16,6 +18,7 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
+      redirect: _mm.getUrlParam('redirect') || '/'
     };
   }
 
@@ -27,20 +30,18 @@ class Login extends React.Component {
       [inputName]: inputValue,
     });
   }
+
   // 点击登录按钮提交信息
   onSubmit(e) {
     console.log(this.state);
-    _mm.request({
-      type: 'post',
-      url: '/manage/user/login.do',
-      data: {
-        username: this.state.username,
-        password: this.state.password
-      }
+    _user.login({
+      username: this.state.username,
+      password: this.state.password
     }).then((res)=>{
-
+      console.log(this.state);
+      this.props.history.push(this.state.redirect);
     }, (err)=> {
-
+      _mm.errorTips(err);
     });
   }
 
