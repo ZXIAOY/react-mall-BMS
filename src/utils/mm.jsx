@@ -1,3 +1,8 @@
+/**
+ * 
+ * 工具类
+ */
+
 class MUtil {
 
   /**
@@ -59,6 +64,39 @@ class MUtil {
     alert(errMsg || '反正就是任性出错了');
   }
 
+  /** 
+   * 存储localStorage 
+   */
+  setStorage(name, data) {
+    let dataType = typeof data;
+    if(dataType === 'object') {
+      window.localStorage.setItem(name, JSON.stringify(data));
+    }
+    else if(['number', 'string', 'boolean'].indexOf(dataType) >= 0) {
+      window.localStorage.setItem(name, data);
+    }
+    else {
+      alert('该类型不能用于本地存储');
+    }
+  }
+  /** 
+   * 读取localStorage 
+   */
+  getStorage(name) {
+    let data = window.localStorage.getItem(name);
+    if(data) {
+      return JSON.parse(data);
+    }
+    else {
+      return '';
+    }
+  }
+  /** 
+   * 删除localStorage 
+   */
+  removeStorage(name) {
+    window.localStorage.removeItem(name);
+  }
 }
 
 export default MUtil;

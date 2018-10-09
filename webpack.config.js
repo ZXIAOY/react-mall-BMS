@@ -19,10 +19,15 @@ module.exports = {
     alias: {
       page: path.resolve(__dirname, 'src/page'),
       component: path.resolve(__dirname, 'src/component'),
-      utils: path.resolve(__dirname, 'src/utils')
+      utils: path.resolve(__dirname, 'src/utils'),
+      service: path.resolve(__dirname, 'src/service')
     }
   },
-  // loaders
+  /**
+   * loaders
+   * 
+   * 
+   * */ 
   module: {// 各种loader配置，在代码中import其他类型文件时，使用前，先用对应的loader
     rules: [
       { // 配置jsx文件babel转换loader
@@ -78,7 +83,10 @@ module.exports = {
       }
     ]
   },
-  // 插件
+  /**
+   * 插件
+   * 
+   * */ 
   plugins: [
     // 处理html文件
     new HtmlWebpackPlugin({
@@ -93,7 +101,10 @@ module.exports = {
       filename: 'js/base.js'
     })
   ],
-  // 热加载服务器
+  /**
+   * 热加载服务器
+   * 
+   * */ 
   devServer: {
     contentBase: './dist',
     port: 8086,
@@ -105,7 +116,11 @@ module.exports = {
     proxy: {
       '/manage': {
         target: 'http://admintest.happymmall.com',
-        changeOrigin: true,     //换源成用这个地址发送
+        changeOrigin: true,     //换源成用这个target地址发送
+      },
+      '/user/logout.do': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true,     //换源成用这个target地址发送
       }
     }
   }
