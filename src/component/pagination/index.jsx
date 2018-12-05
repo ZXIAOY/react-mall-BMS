@@ -1,3 +1,6 @@
+/** 
+ * 分页组件封装
+ */
 import React from 'react';
 import RcPagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.min.css';

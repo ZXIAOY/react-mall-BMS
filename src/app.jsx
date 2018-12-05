@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, Route, Redirect, Switch,} from 'react-ro
 import Layout from 'component/layout/index.jsx';
 
 import Home from 'page/home/index.jsx';
+import ProductRouter from 'page/product/router.jsx';
 import Login from 'page/login/index.jsx';
 import User from 'page/user/index.jsx';
 import ErrorPage from 'page/error/index.jsx';
@@ -19,7 +20,7 @@ class App extends React.Component {
       <Layout>
         <Switch>
           <Route exact path='/' component={Home} /> {/* exact表示严格匹配 */}
-          <Route path='/product' component={Home} /> 
+          <Route path='/product' component={ProductRouter} /> 
           <Route path='/product-category' component={Home} /> 
           <Route path='/user/index' component={User} />
           <Redirect exact from='/user' to='/user/index' />
