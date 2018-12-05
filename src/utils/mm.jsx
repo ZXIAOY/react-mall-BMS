@@ -58,6 +58,13 @@ class MUtil {
     return result? decodeURIComponent(result[2]) : null;  
   }
   /** 
+   * 成功提示
+   */
+  successTips(successMsg) {
+    alert(successMsg || '成功就完事了');
+  }
+
+  /** 
    * 错误提示
    */
   errorTips(errMsg) {

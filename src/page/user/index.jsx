@@ -1,6 +1,6 @@
-/*
-  user页面
-*/
+/** 
+ * 用户列表
+ */
 import React from 'react';
 import {Link} from 'react-router-dom';
 import MUtil from '../../utils/mm.jsx';
@@ -8,6 +8,7 @@ import User from 'service/user-service.jsx';
 
 import PageTitle from 'component/page-title/index.jsx';
 import Pagination from 'component/pagination/index.jsx';
+import TableList from 'component/table-list/index.jsx';
 
 const _mm = new MUtil();
 const _user = new User();
@@ -17,8 +18,7 @@ class UserList extends React.Component {
     super(props);
     this.state = {
       pageNum: 1,
-      list: [],
-      firstLoading: true
+      list: []
     }
   }
 
@@ -29,9 +29,7 @@ class UserList extends React.Component {
   loadUserList() {
     _user.getUserList(this.state.pageNum)
       .then(res => {
-        this.setState(res, ()=>{
-          this.setState({firstLoading: false});
-        });
+        this.setState(res);
       },err => {
         this.setState({list: []});
         _mm.errorTips(err);
@@ -56,30 +54,12 @@ class UserList extends React.Component {
         <td>{new Date(user.createTime).toLocaleString()}</td>
       </tr>);
     });
-    let listError = (
-      <tr><td colSpan='5' className='text-center'>{this.state.firstLoading ? '正在加载...' : '没有找到相应结果'}</td></tr>
-    );
     return (
       <div id="page-wrapper">
         <PageTitle title='用户列表' />
-        <div className="row">
-          <div className="col-md-12">
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>用户名</th>
-                  <th>邮箱</th>
-                  <th>电话</th>
-                  <th>注册时间</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.list.length > 0 ? listBody : listError}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <TableList tableHeads={ ['ID', '用户名', '邮箱', '电话', '注册时间'] }>
+            {listBody}
+        </TableList>
         <Pagination 
           current={this.state.pageNum} 
           total={this.state.total}
